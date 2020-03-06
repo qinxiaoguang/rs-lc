@@ -1,32 +1,13 @@
 pub struct Solution {}
-use std::collections::{HashMap, HashSet};
-// String::from == sf!
-macro_rules! sf {
-    ($str:expr) => {
-        String::from($str)
-    };
-}
-
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
+use std::collections::HashSet;
 
 // set macro
 macro_rules! set {
     ($($k:expr),*) => {
         {
-            let mut set = HashSet::new();
+            let set = HashSet::new();
             $(
-                map.insert($k);
+                set.insert($k);
             )*
             set
         }
@@ -37,6 +18,7 @@ impl Solution {
     // 判断一个数独是否合法，数独是9*9的，空白字符为'.'
     // 思路很简单，就是遍历一遍，如board[i][j]的数为7，那么此i行j列不允许再有7
     // 同时此9*9方格也不准有7，那么问题是怎么准确的找到9*9方格的位置，其实就是[i/3][j/3]
+    #![allow(dead_code)]
     pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
         let mut col_set: Vec<HashSet<char>> = vec![set![]; 9];
         let mut row_set: Vec<HashSet<char>> = vec![set![]; 9];

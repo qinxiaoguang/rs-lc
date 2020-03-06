@@ -4,6 +4,7 @@ impl Solution {
     // 维护start,end两个下标，分别从最后和最前来计算当前能容纳的最大面积
     // 找出两个下标中的最小值，让最小值进行遍历，重复上述步骤。
     // 为什么是最小值遍历呢，因为决定面积的是最小值。
+    #![allow(dead_code)]
     pub fn max_area(height: Vec<i32>) -> i32 {
         if height.is_empty() {
             return 0_i32;

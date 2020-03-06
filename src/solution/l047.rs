@@ -1,37 +1,4 @@
 pub struct Solution {}
-use std::collections::{HashMap, HashSet};
-// String::from == sf!
-macro_rules! sf {
-    ($str:expr) => {
-        String::from($str)
-    };
-}
-
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
-
-// set macro
-macro_rules! set {
-    ($($k:expr),*) => {
-        {
-            let mut set = HashSet::new();
-            $(
-                map.insert($k);
-            )*
-            set
-        }
-    };
-}
 
 impl Solution {
     // 有重复的数组 找出不重复的全排列
@@ -40,6 +7,7 @@ impl Solution {
     // 剪枝的条件其实很简单，首先要对一个sort后的数组进行dfs
     // 那么在dfs的时候，判断当前坐标的点与上个坐标的点是否相等，若相等，就不需要往下继续深搜遍历
     // 原因就是上个节点已经进行过了一次深搜遍历，比如[1,1,2],对第一个坐标1进行遍历后，再对第二个坐标的1进行遍历，就造成了重复
+    #![allow(dead_code)]
     pub fn permute_unique(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut res = vec![];
         let mut nums = nums;

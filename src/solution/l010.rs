@@ -6,7 +6,8 @@ impl Solution {
     // 采用dp的思想去解决。dp[i][j] 表示s[0..i]与p[0..j]是否匹配
     // 分情况考虑,首先要知道，当遍历到(i,j)时，(i,j-1),(i-1,j-1),(i-1,j)的答案是已经知道的，所以要利用这3个信息
     // 太难了，写完了，费脑子,又挂了，不想写了。
-    pub fn is_match(s: String, p: String) -> bool {
+    #![allow(dead_code)]
+    pub fn is_match(_: String, _: String) -> bool {
         false
     }
 }

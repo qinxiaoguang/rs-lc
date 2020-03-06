@@ -3,6 +3,7 @@ impl Solution {
     // 寻找两个数组的中位数: 如[1,3] ,[2]的中位数是 2，即[1,2,3] => 2
     // 就是给两个数组，长度总和为k,无论k是奇还是偶，都是找(k+1)/2,(k+2)/2个数。所以先找第(k-1)/2 + 1个数，
     // 方法就是先找两个数组中的中位数，如a,b，如果a<b,那么a的数组中小于a的数字一定没有第(k-1)/2 + 1个数。所以依次递归即可。
+    #![allow(dead_code)]
     pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         let length = nums1.len() + nums2.len();
         let (k1, k2) = ((length + 1) / 2, (length + 2) / 2);

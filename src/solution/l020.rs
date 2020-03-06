@@ -2,6 +2,7 @@ pub struct Solution {}
 impl Solution {
     // 判断输入的括号是否合法
     // 采用栈
+    #![allow(dead_code)]
     pub fn is_valid(s: String) -> bool {
         let chars: Vec<char> = s.chars().collect();
         let mut stack = vec![];

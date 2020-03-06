@@ -1,24 +1,4 @@
 pub struct Solution {}
-use std::collections::HashMap;
-// String::from == sf!
-macro_rules! sf {
-    ($str:expr) => {
-        String::from($str)
-    };
-}
-
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
 
 impl Solution {
     // 找目标值，若不存在，找到应该插入的位置
@@ -27,6 +7,7 @@ impl Solution {
     // 需要注意的要点是，当数组只有1，2，3个数时，二分的表现是什么,因为这是临界条件
     // 主要的要点是，怎么更新left和right的值,以及二分的位置是向上取整还是向下取整，
     // 一般来说，向下取整就是 (left+right)/2, 而向上取整就是 (left+right+1)/2
+    #![allow(dead_code)]
     pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
         let (mut left, mut right) = (0_usize, nums.len() - 1);
         while left < right {

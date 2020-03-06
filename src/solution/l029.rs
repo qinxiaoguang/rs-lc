@@ -2,6 +2,7 @@ pub struct Solution {}
 impl Solution {
     // 不使用除法，乘法，mod计算两个数相除的商
     // 不使用除法，但是可以使用加法，减法，此题可以考虑快速蜜
+    #![allow(dead_code)]
     pub fn divide(dividend: i32, divisor: i32) -> i32 {
         let mut is_neg = false;
         if (dividend > 0 && divisor < 0) || (dividend < 0 && divisor > 0) {
@@ -28,7 +29,7 @@ impl Solution {
         }
         let mut dividend = dividend;
         if divisor <= dividend && dividend < divisor + divisor {
-            let (mut cnt, mut mod_v) = Self::my_divide(dividend - divisor, divisor);
+            let (mut cnt, mod_v) = Self::my_divide(dividend - divisor, divisor);
             cnt += 1;
             return (cnt, mod_v);
         } else {

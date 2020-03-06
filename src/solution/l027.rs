@@ -1,6 +1,7 @@
 pub struct Solution {}
 impl Solution {
     // 原地移除所有等于val的数，返回数组的长度
+    #![allow(dead_code)]
     pub fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
         let (mut first, mut second) = (0, 0);
         loop {

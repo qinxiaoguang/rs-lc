@@ -1,5 +1,4 @@
 pub struct Solution {}
-use std::collections::{HashMap, HashSet};
 // String::from == sf!
 macro_rules! sf {
     ($str:expr) => {
@@ -7,34 +6,9 @@ macro_rules! sf {
     };
 }
 
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
-
-// set macro
-macro_rules! set {
-    ($($k:expr),*) => {
-        {
-            let mut set = HashSet::new();
-            $(
-                map.insert($k);
-            )*
-            set
-        }
-    };
-}
-
 impl Solution {
     // 计算两个数相乘，不能用大数库
+    #![allow(dead_code)]
     pub fn multiply(num1: String, num2: String) -> String {
         if num1.is_empty() || num2.is_empty() {
             return sf!("");

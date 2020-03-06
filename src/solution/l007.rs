@@ -1,6 +1,7 @@
 pub struct Solution {}
 impl Solution {
     // 整数反转,只有一点，就是考虑溢出的情形。
+    #![allow(dead_code)]
     pub fn reverse(x: i32) -> i32 {
         let mut is_neg = false;
         let mut x: i64 = x as i64;

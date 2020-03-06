@@ -5,6 +5,7 @@ impl Solution {
     // 1. 保证在遍历start~end时，保存在set中的字符是不重复的。
     // 2. 当出现重复的字符时，需要再遍历一遍当前的start~end的序列，删除对应的字符，直到遇到重复的字符，同时更新start的位置。
     // 3. 边界条件
+    #![allow(dead_code)]
     pub fn length_of_longest_substring(s: String) -> i32 {
         use std::collections::HashSet;
         let seq: Vec<char> = s.chars().collect();

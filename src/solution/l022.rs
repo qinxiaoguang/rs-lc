@@ -1,6 +1,7 @@
 pub struct Solution {}
 impl Solution {
     // 给出n代表n对括号，输出这n对括号组成的所有可能的有效括号对数.其实就是dfs，并且保证前边的左括号的个数一定是大于等于右括号的个数
+    #![allow(dead_code)]
     pub fn generate_parenthesis(n: i32) -> Vec<String> {
         let mut res = vec![];
         Self::generate("".to_string(), 0, 0, 2 * (n as i64), &mut res);

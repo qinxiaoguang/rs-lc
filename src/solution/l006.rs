@@ -2,6 +2,7 @@ pub struct Solution {}
 impl Solution {
     // 输入 : LEETCODEISHIRING, 3，表示三行z字型打印
     // 用三个数组，数组中存储字符串，模拟即可。
+    #![allow(dead_code)]
     pub fn convert(s: String, num_rows: i32) -> String {
         if num_rows < 2 {
             return s;

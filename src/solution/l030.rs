@@ -4,6 +4,7 @@ use std::collections::HashMap;
 impl Solution {
     // 输出串联子串的位置，可以乱序，但不可重复
     // 采用滑动窗口,滑动窗口按照步长进行前进，注意要点是字符串的长度都是相同的
+    #![allow(dead_code)]
     pub fn find_substring(s: String, words: Vec<String>) -> Vec<i32> {
         let mut res = vec![];
         if words.is_empty() {

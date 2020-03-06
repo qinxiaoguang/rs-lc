@@ -1,37 +1,4 @@
 pub struct Solution {}
-use std::collections::{HashMap, HashSet};
-// String::from == sf!
-macro_rules! sf {
-    ($str:expr) => {
-        String::from($str)
-    };
-}
-
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
-
-// set macro
-macro_rules! set {
-    ($($k:expr),*) => {
-        {
-            let mut set = HashSet::new();
-            $(
-                map.insert($k);
-            )*
-            set
-        }
-    };
-}
 
 impl Solution {
     // 给定一个未排序的数组，找到其中没有出现的最小的正整数
@@ -41,13 +8,14 @@ impl Solution {
     // 但是现在要求空间复杂度为o(1)，那么其实就是在该数组上，将其转变为arr[n]
     // 方法就是从左往右遍历，将所有的数放到其正确的位置，正确位置的含义是，其坐标和其值是相等的，如当前遍历到的值是2,那么arr[2]=2,即这两个位置交换
     // 最终就是遍历一遍找到第一个不在正确位置的数。
+    #![allow(dead_code)]
     pub fn first_missing_positive(nums: Vec<i32>) -> i32 {
         if nums.is_empty() {
             return 1;
         }
         let mut nums = nums;
         let mut index = 0_usize;
-        let mut swap_index = 0_i32;
+        let mut swap_index: i32;
         loop {
             //println!("{:?}", nums);
             if index >= nums.len() {

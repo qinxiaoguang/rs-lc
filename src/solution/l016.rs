@@ -3,6 +3,7 @@ impl Solution {
     // 找到数组中，三数相加为0的数
     // 必须采用固定第一个数，查找后边的数中的目标值，因为两个数相加等于某数，可以采用o(n)的解法
     // 和15题讨论一样
+    #![allow(dead_code)]
     pub fn three_sum_closest(nums: Vec<i32>, target: i32) -> i32 {
         let mut nums = nums;
         let mut min = std::i32::MAX;
