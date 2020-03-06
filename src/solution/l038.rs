@@ -1,5 +1,4 @@
 pub struct Solution {}
-use std::collections::{HashMap, HashSet};
 // String::from == sf!
 macro_rules! sf {
     ($str:expr) => {
@@ -7,33 +6,8 @@ macro_rules! sf {
     };
 }
 
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
-
-// set macro
-macro_rules! set {
-    ($($k:expr),*) => {
-        {
-            let mut set = HashSet::new();
-            $(
-                map.insert($k);
-            )*
-            set
-        }
-    };
-}
-
 impl Solution {
+    #![allow(dead_code)]
     pub fn count_and_say(n: i32) -> String {
         let mut source_string = sf!("1");
         for _ in 0..n - 1 {

@@ -1,25 +1,4 @@
 pub struct Solution {}
-use std::collections::HashMap;
-// String::from == sf!
-macro_rules! sf {
-    ($str:expr) => {
-        String::from($str)
-    };
-}
-
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
-
 impl Solution {
     // 旋转数组找到目标值,二分方法
     // 若左边的数大于右边，则结果可能在此数组中
@@ -27,6 +6,7 @@ impl Solution {
     // 若存在，返回其索引
     // nums = [4,5,6,7,0,1,2], target = 0,
     // 1,3:3
+    #![allow(dead_code)]
     pub fn search(nums: Vec<i32>, target: i32) -> i32 {
         Self::my_search(&nums, target)
     }

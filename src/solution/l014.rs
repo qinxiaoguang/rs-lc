@@ -1,6 +1,7 @@
 pub struct Solution {}
 impl Solution {
     // 找数组中的字符串中的最长公共前缀
+    #![allow(dead_code)]
     pub fn longest_common_prefix(strs: Vec<String>) -> String {
         let mut res: Vec<char> = vec![];
         let min_len = strs.iter().map(|s| s.len()).min().unwrap_or(0);

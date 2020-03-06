@@ -22,6 +22,7 @@ impl Solution {
     // 符合条件的则，则将对应的节点变换为下下个节点。因为不存在两个指针，所以可以采用一个mut来搞。
     // 而快慢指针需要一个mut一个ref,或者两个mut，不符合rust情况。
     // 有点扯淡
+    #![allow(dead_code)]
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
         Solution::remove(head, n).0
     }

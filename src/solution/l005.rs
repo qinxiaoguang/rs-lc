@@ -2,6 +2,7 @@ pub struct Solution {}
 impl Solution {
     // 最长回文子串
     // babad => aba
+    #![allow(dead_code)]
     pub fn longest_palindrome(s: String) -> String {
         // 首先需要将s变为#b#a#b#a#d
         let mut res = s.chars().map(|c| format!("#{}", c)).collect::<String>();
@@ -55,8 +56,8 @@ impl Solution {
         chars
             .iter()
             .enumerate()
-            .filter(|(i, c)| i >= &start && i <= &end)
-            .map(|(i, c)| c)
+            .filter(|(i, _)| i >= &start && i <= &end)
+            .map(|(_, c)| c)
             .filter(|&c| c != &'#')
             .collect::<String>()
     }

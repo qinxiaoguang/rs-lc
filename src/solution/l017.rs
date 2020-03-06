@@ -2,6 +2,7 @@ pub struct Solution {}
 use std::collections::HashMap;
 impl Solution {
     // 给出[2-9]的数字，输出所有的可能的手机按键输出的字符串
+    #![allow(dead_code)]
     pub fn letter_combinations(digits: String) -> Vec<String> {
         let mut map = HashMap::new();
         map.insert('2', vec!['a', 'b', 'c']);

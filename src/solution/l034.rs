@@ -1,28 +1,8 @@
 pub struct Solution {}
-use std::collections::HashMap;
-// String::from == sf!
-macro_rules! sf {
-    ($str:expr) => {
-        String::from($str)
-    };
-}
-
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
-
 impl Solution {
     // 查找一个排序数组中，目标值的最左位置和最右位置
     // 写得有点复杂，后续可以优化
+    #![allow(dead_code)]
     pub fn search_range(nums: Vec<i32>, target: i32) -> Vec<i32> {
         vec![
             Self::find_left(&nums, target),
@@ -52,7 +32,6 @@ impl Solution {
             return -1;
         }
         let mid = (0 as i32 + nums.len() as i32) / 2;
-        let mut res = -1_i32;
         if nums[mid as usize] >= target {
             if mid as i32 >= 0 {
                 let left_res = Self::find_left(&nums[0 as usize..mid as usize + 1], target);
@@ -93,7 +72,6 @@ impl Solution {
             return -1;
         }
         let mid = (0 as i32 + nums.len() as i32) / 2;
-        let mut res = -1_i32;
         if nums[mid as usize] <= target {
             if (mid as usize) <= nums.len() {
                 let right_res = Self::find_right(&nums[mid as usize..nums.len() as usize], target);

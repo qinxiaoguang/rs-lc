@@ -3,6 +3,7 @@ impl Solution {
     // 找到数组中，三数相加为0的数
     // 必须采用固定第一个数，查找后边的数中的目标值，因为两个数相加等于某数，可以采用o(n)的解法
     // 即(i,j)两个指针，如果当前和大于目标值，则j--,否则i++
+    #![allow(dead_code)]
     pub fn four_sum(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         let mut nums = nums;
         let mut res = std::collections::HashSet::new();

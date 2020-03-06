@@ -1,9 +1,4 @@
 pub struct Solution {}
-macro_rules! sf {
-    ($str:expr) => {
-        String::from($str)
-    };
-}
 impl Solution {
     // 给定字符串，找出里面的最长的有效括号的字符串的长度
     // 1. 采用栈辅助，遇到(将当前坐标入栈，遇到)弹出栈顶，并用当前坐标计算其差值，即入栈的只有(的坐标
@@ -12,6 +7,7 @@ impl Solution {
     //                    s[i-1]为")"时，则s[i-dp[i-1]]为(时，则dp[i] = 2+dp[i-1]
     // 其余情况dp[i]为0
     // 3. 最巧妙的解法，就是使用尺取法，但是使用两次，一次是对正序的s进行尺取，一次再对倒序的s进行尺取。
+    #![allow(dead_code)]
     pub fn longest_valid_parentheses(s: String) -> i32 {
         std::cmp::max(
             Self::cal_long(&s),

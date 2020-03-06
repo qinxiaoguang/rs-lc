@@ -1,41 +1,9 @@
 pub struct Solution {}
-use std::collections::{HashMap, HashSet};
-// String::from == sf!
-macro_rules! sf {
-    ($str:expr) => {
-        String::from($str)
-    };
-}
-
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
-
-// set macro
-macro_rules! set {
-    ($($k:expr),*) => {
-        {
-            let mut set = HashSet::new();
-            $(
-                map.insert($k);
-            )*
-            set
-        }
-    };
-}
 
 impl Solution {
     // 给排序的非重复的数，找出所有的子数组相加等于target的数组，其中每个数可以被无限制的重复
     // 以为有什么黑科技的方法，实际上只是用sort + dfs+剪枝就能解决
+    #![allow(dead_code)]
     pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         let mut res: Vec<Vec<i32>> = vec![];
         let mut candidates = candidates;

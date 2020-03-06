@@ -1,37 +1,4 @@
 pub struct Solution {}
-use std::collections::{HashMap, HashSet};
-// String::from == sf!
-macro_rules! sf {
-    ($str:expr) => {
-        String::from($str)
-    };
-}
-
-// map macro
-macro_rules! map {
-    ($($k:expr => $v:expr),*) => {
-        {
-            let mut map = HashMap::new();
-            $(
-                map.insert($k, $v);
-            )*
-            map
-        }
-    };
-}
-
-// set macro
-macro_rules! set {
-    ($($k:expr),*) => {
-        {
-            let mut set = HashSet::new();
-            $(
-                map.insert($k);
-            )*
-            set
-        }
-    };
-}
 
 impl Solution {
     // 将一个matrix 旋转,在原地旋转，空间复杂度O(1)
@@ -40,6 +7,7 @@ impl Solution {
     // 2. 右斜对角旋转 -> 上下旋转
     // 任选其一
     // 对角线旋转方法是，判断i-j是否大于0
+    #![allow(dead_code)]
     pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
         // 对角线旋转
         let n = matrix.len();
