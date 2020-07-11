@@ -1,3 +1,4 @@
+use super::ListNode;
 use std::collections::{HashMap, HashSet};
 // String::from == sf!
 macro_rules! sf {
@@ -21,6 +22,19 @@ macro_rules! map {
 
 // set macro
 macro_rules! set {
+    ($($k:expr),*) => {
+        {
+            let mut set = HashSet::new();
+            $(
+                map.insert($k);
+            )*
+            set
+        }
+    };
+}
+
+// set macro
+macro_rules! list {
     ($($k:expr),*) => {
         {
             let mut set = HashSet::new();
