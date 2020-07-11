@@ -48,45 +48,8 @@ pub struct Solution {}
 
 // @lc code=start
 impl Solution {
-    pub fn max_profit_v2(prices: &[i32]) -> i32 {
-        // l[i]表示第i个结点左边的最小值，r[i]表示i结点右边的最大值
-        // 最后找到r[i] - l[i] 的最大值
-        let mut res = 0;
-        for i in 0..prices.len() {
-            res = std::cmp::max(r[i as usize] - l[i as usize], res);
-        }
-        res
-    }
     pub fn max_profit(prices: Vec<i32>) -> i32 {
-        // 与121题类似，将当前价格以i为临界点分为两部分 l[i],r[i]
-        // 分别计算两个数组的最大收益，最后遍历一遍得到最终结果
-
-        let mut res = 0;
-        let mut prices = prices;
-        prices.push(-1);
-
-        let (mut l, mut r) = (vec![0; prices.len()], vec![0; prices.len()]);
-        // 先从左往右遍历，更新l
-        let mut min = std::i32::MAX;
-        for (x, &val) in prices.iter().enumerate() {
-            min = std::cmp::min(min, val);
-            l[x] = min;
-        }
-        // 更新r
-        let mut max = std::i32::MIN;
-        for (x, &val) in prices.iter().enumerate().rev() {
-            max = std::cmp::max(max, val);
-            r[x] = max;
-        }
-
-        for i in 0..prices.len() {
-            let i = i as usize;
-            res = std::cmp::max(
-                Self::max_profit_v2(&prices[0..i]) + Self::max_profit_v2(&prices[i..]),
-                res,
-            );
-        }
-        res
+        0
     }
 }
 // @lc code=end
