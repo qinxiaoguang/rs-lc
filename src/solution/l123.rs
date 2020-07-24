@@ -49,7 +49,42 @@ pub struct Solution {}
 // @lc code=start
 impl Solution {
     pub fn max_profit(prices: Vec<i32>) -> i32 {
-        0
+        // 采用暴力+剪枝的方法，依然过不去，还是超时
+        // 上网看了下别人的解法，发现是dp
+        // dp也考虑过，但是状态转移方程想了半天没想出来怎么做
+        // 看了别人解法，原来要穷举状态
+        // dp[i][k][1/0] 表示第i天交易了k次，当前持有/不持有股票的最大收益
+        // 如dp[5][1][0]: 表示第5天，交易了1次，当前不持有股票的最大收益
+        // 那么状态转移方程
+        // dp[i][k][0] = max(dp[i-1][k][1] + price[i](把持有的卖了),dp[i-1][k][0](一直不持有))
+        // dp[i][k][1] = max(dp[i-1][k-1][0] - price[i](买了今天的),dp[i-1][k][1](一直持有))
+        // 该题的k = 2
+        use std::cmp::max;
+        let i_len = prices.len();
+        if i_len == 0 {
+            return 0;
+        }
+        let k_len = 2;
+        let mut dp = vec![vec![vec![0; 2]; k_len + 1]; i_len];
+        for i in 0..i_len {
+            for k in 0..=k_len {
+                // 处理i==0时的情况,第一天的情况比较特殊
+                if i == 0 {
+                    dp[i][k][0] = 0;
+                    dp[i][k][1] = if k == 0 { 0 } else { -prices[i] };
+                    continue;
+                }
+                // 处理k==0的情况,k=0时，表示没发生过交易，所以收益都是0
+                if k == 0 {
+                    dp[i][k][1] = 0;
+                    dp[i][k][0] = 0;
+                    continue;
+                }
+                dp[i][k][0] = max(dp[i - 1][k][1] + prices[i], dp[i - 1][k][0]);
+                dp[i][k][1] = max(dp[i - 1][k - 1][0] - prices[i], dp[i - 1][k][1]);
+            }
+        }
+        dp[i_len - 1][k_len][0]
     }
 }
 // @lc code=end
@@ -63,5 +98,6 @@ mod test {
         assert_eq!(Solution::max_profit(vec![1, 2, 3, 4, 5]), 4);
         assert_eq!(Solution::max_profit(vec![7, 6, 5, 4, 3, 2, 1]), 0);
         assert_eq!(Solution::max_profit(vec![1, 2, 4, 2, 5, 7, 2, 4, 9, 0]), 13);
+        assert_eq!(Solution::max_profit(vec![]), 0);
     }
 }
