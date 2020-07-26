@@ -2,6 +2,7 @@
 
 cwd=$(cd `dirname $0`;pwd);
 num=$1
+p=$2
 src=$cwd"/src"
 solution=$src"/solution"
 tFile=$solution"/l$num.rs"
@@ -13,11 +14,14 @@ if [ -e $tFile ];then
 fi
 
 echo "pub struct Solution{}" > $tFile
-pbpaste >> $tFile
+
+if [ "$p" -eq "1" ];then
+	pbpaste >> $tFile
+fi
 
 echo  "#[cfg(test)]\nmod test {\n\tuse super::*;\n\t#[test]\n\tfn test_l$num() {}\n}" >> $tFile
 
-echo "pub mod l$num" >> $modFile
+echo "pub mod l$num;" >> $modFile
 echo "done"
 
 
