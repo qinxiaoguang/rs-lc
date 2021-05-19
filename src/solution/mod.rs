@@ -1,16 +1,17 @@
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
+    val: i32,
+    next: Option<Box<ListNode>>,
 }
 
 impl ListNode {
     #[inline]
-    fn new(val: i32) -> Self {
+    pub fn new(val: i32) -> Self {
         ListNode { next: None, val }
     }
 
-    fn to_list(vec: Vec<i32>) -> Option<Box<Self>> {
+    #[allow(dead_code)]
+    pub fn to_list(vec: Vec<i32>) -> Option<Box<Self>> {
         let mut head = Self::new(0);
         let mut tail = &mut head;
         for val in vec.into_iter() {
@@ -26,9 +27,9 @@ use std::cell::RefCell;
 use std::rc::Rc;
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
+    val: i32,
+    left: Option<Rc<RefCell<TreeNode>>>,
+    right: Option<Rc<RefCell<TreeNode>>>,
 }
 
 impl TreeNode {
@@ -40,177 +41,245 @@ impl TreeNode {
             right: None,
         }
     }
+
+    pub fn add_left(&mut self, node: Self) -> &mut Self {
+        self.left = Some(Rc::new(RefCell::new(node)));
+        self
+    }
+
+    pub fn add_right(&mut self, node: Self) -> &mut Self {
+        self.right = Some(Rc::new(RefCell::new(node)));
+        self
+    }
+
+    pub fn to_tree(v: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
+        Self::get_root(v, 0)
+    }
+
+    fn get_root(v: &[i32], root_node: usize) -> Option<Rc<RefCell<TreeNode>>> {
+        if root_node >= v.len() {
+            return None;
+        }
+        if v[root_node] == -1 {
+            return None;
+        }
+        let mut root = TreeNode::new(v[root_node]);
+        root.left = Self::get_root(v, root_node * 2 + 1);
+        root.right = Self::get_root(v, root_node * 2 + 2);
+        Some(Rc::new(RefCell::new(root)))
+    }
 }
 
-pub mod l002;
-pub mod l003;
-pub mod l004;
-pub mod l005;
-pub mod l006;
-pub mod l007;
-pub mod l008;
-pub mod l009;
-pub mod l010;
-pub mod l011;
-pub mod l014;
-pub mod l015;
-pub mod l016;
-pub mod l017;
-pub mod l018;
-pub mod l019;
-pub mod l020;
-pub mod l021;
-pub mod l022;
-pub mod l023;
-pub mod l024;
-pub mod l025;
-pub mod l026;
-pub mod l027;
-pub mod l029;
-pub mod l030;
-pub mod l031;
-pub mod l032;
-pub mod l033;
-pub mod l034;
-pub mod l035;
-pub mod l036;
-pub mod l038;
-pub mod l039;
-pub mod l040;
-pub mod l041;
-pub mod l042;
-pub mod l043;
-pub mod l045;
-pub mod l046;
-pub mod l047;
-pub mod l048;
-pub mod l049;
-pub mod l050;
-pub mod l051;
-pub mod l052;
-pub mod l053;
-pub mod l054;
-pub mod l055;
-pub mod l056;
-pub mod l057;
-pub mod l058;
-pub mod l059;
-pub mod l060;
-pub mod l061;
-pub mod l062;
-pub mod l063;
-pub mod l064;
-pub mod l066;
-pub mod l069;
-pub mod l070;
-pub mod l071;
-pub mod l072;
-pub mod l073;
-pub mod l074;
-pub mod l075;
-pub mod l076;
-pub mod l077;
-pub mod l078;
-pub mod l079;
-pub mod l080;
-pub mod l081;
-pub mod l082;
-pub mod l083;
-pub mod l084;
-pub mod l085;
-pub mod l086;
-pub mod l088;
-pub mod l089;
-pub mod l090;
-pub mod l091;
-pub mod l092;
-pub mod l093;
-pub mod l094;
-pub mod l095;
-pub mod l096;
-pub mod l097;
-pub mod l098;
-pub mod l105;
-pub mod l106;
-pub mod l109;
-pub mod l118;
-pub mod l119;
-pub mod l120;
-pub mod l121;
-pub mod l122;
-pub mod l123;
-pub mod l126;
-pub mod l128;
-pub mod l143;
-pub mod l148;
-pub mod l152;
-pub mod l153;
-pub mod l154;
-pub mod l162;
-pub mod l167;
-pub mod l169;
-pub mod l189;
-pub mod l203;
-pub mod l206;
-pub mod l209;
-pub mod l216;
-pub mod l217;
-pub mod l219;
-pub mod l228;
-pub mod l229;
-pub mod l234;
-pub mod l238;
-pub mod l268;
-pub mod l283;
-pub mod l287;
-pub mod l289;
-pub mod l380;
-pub mod l414;
-pub mod l442;
-pub mod l445;
-pub mod l448;
-pub mod l457;
-pub mod l485;
-pub mod l495;
-pub mod l532;
-pub mod l560;
-pub mod l561;
-pub mod l565;
-pub mod l566;
-pub mod l581;
-pub mod l605;
-pub mod l611;
-pub mod l621;
-pub mod l628;
-pub mod l643;
-pub mod l661;
-pub mod l665;
-pub mod l667;
-pub mod l670;
-pub mod l674;
-pub mod l689;
-pub mod l695;
-pub mod l697;
-pub mod l713;
-pub mod l714;
-pub mod l717;
-pub mod l718;
-pub mod l719;
-pub mod l724;
-pub mod l725;
-pub mod l729;
-pub mod l747;
-pub mod l748;
-pub mod l766;
-pub mod l777;
-pub mod util;
-pub mod l779;
-pub mod l780;
-pub mod l790;
-pub mod l798;
-pub mod l808;
-pub mod l811;
-pub mod l852;
-pub mod l857;
-pub mod l861;
-pub mod l864;
+pub struct Solution {}
+
+mod l000;
+mod l002;
+mod l003;
+mod l004;
+mod l005;
+mod l006;
+mod l007;
+mod l008;
+mod l009;
+mod l010;
+mod l011;
+mod l014;
+mod l015;
+mod l016;
+mod l017;
+mod l018;
+mod l019;
+mod l020;
+mod l021;
+mod l022;
+mod l023;
+mod l024;
+mod l025;
+mod l026;
+mod l027;
+mod l029;
+mod l030;
+mod l031;
+mod l032;
+mod l033;
+mod l034;
+mod l035;
+mod l036;
+mod l038;
+mod l039;
+mod l040;
+mod l041;
+mod l042;
+mod l043;
+mod l045;
+mod l046;
+mod l047;
+mod l048;
+mod l049;
+mod l050;
+mod l051;
+mod l052;
+mod l053;
+mod l054;
+mod l055;
+mod l056;
+mod l057;
+mod l058;
+mod l059;
+mod l060;
+mod l061;
+mod l062;
+mod l063;
+mod l064;
+mod l066;
+mod l069;
+mod l070;
+mod l071;
+mod l072;
+mod l073;
+mod l074;
+mod l075;
+mod l076;
+mod l077;
+mod l078;
+mod l079;
+mod l080;
+mod l081;
+mod l082;
+mod l083;
+mod l084;
+mod l085;
+mod l086;
+mod l088;
+mod l089;
+mod l090;
+mod l091;
+mod l092;
+mod l093;
+mod l094;
+mod l095;
+mod l096;
+mod l097;
+mod l098;
+mod l1002;
+mod l1009;
+mod l1013;
+mod l1016;
+mod l1020;
+mod l1027;
+mod l1031;
+mod l105;
+mod l106;
+mod l109;
+mod l118;
+mod l119;
+mod l120;
+mod l121;
+mod l122;
+mod l123;
+mod l126;
+mod l128;
+mod l1405;
+mod l143;
+mod l1465;
+mod l1477;
+mod l148;
+mod l152;
+mod l153;
+mod l154;
+mod l162;
+mod l167;
+mod l1679;
+mod l169;
+mod l189;
+mod l203;
+mod l206;
+mod l209;
+mod l216;
+mod l217;
+mod l219;
+mod l228;
+mod l229;
+mod l234;
+mod l236;
+mod l238;
+mod l268;
+mod l283;
+mod l287;
+mod l289;
+mod l337;
+mod l380;
+mod l414;
+mod l424;
+mod l438;
+mod l442;
+mod l445;
+mod l448;
+mod l457;
+mod l468;
+mod l485;
+mod l495;
+mod l523;
+mod l532;
+mod l560;
+mod l561;
+mod l565;
+mod l566;
+mod l581;
+mod l605;
+mod l611;
+mod l621;
+mod l628;
+mod l636;
+mod l643;
+mod l661;
+mod l665;
+mod l667;
+mod l670;
+mod l674;
+mod l689;
+mod l695;
+mod l697;
+mod l713;
+mod l714;
+mod l717;
+mod l718;
+mod l719;
+mod l724;
+mod l725;
+mod l729;
+mod l747;
+mod l748;
+mod l766;
+mod l777;
+mod l779;
+mod l780;
+mod l790;
+mod l798;
+mod l808;
+mod l811;
+mod l849;
+mod l852;
+mod l857;
+mod l861;
+mod l864;
+mod l870;
+mod l879;
+mod l898;
+mod l905;
+mod l924;
+mod l927;
+mod l932;
+mod l936;
+mod l941;
+mod l943;
+mod l950;
+mod l951;
+mod l954;
+mod l958;
+mod l962;
+mod l978;
+mod l982;
+mod l991;
+mod m1005;
+mod util;

@@ -61,7 +61,9 @@ impl Solution {
     // 刚开始用dfs来解的，但是题中没说走过的路不能再走，所以dfs一定是不行的，只能使用bfs来解
     // 用dfs浪费了很多时间。。。。
     // 但是bfs还有一个问题，如果此无解，什么样才是终点？
-    // 如果不限制终点，将会超时
+    // 如果不限制步数，那么他可能回在两个点来回走。
+    // 看了官方题解，采用bfs来计算起点，钥匙点等各个关键点的距离
+    // 之后通过dijstra来求解，只能说一句牛比
     pub fn shortest_path_all_keys(grid: Vec<String>) -> i32 {
         if grid.len() == 0 {
             return 0;
@@ -70,136 +72,23 @@ impl Solution {
             .into_iter()
             .map(|s| s.chars().collect::<Vec<char>>())
             .collect();
-
-        let mut all_keys_num = 0;
-        let (mut start, mut end) = (0, 0);
+        let mut cost = vec![vec![0; 7]; 7];
         for i in 0..grid.len() {
             for j in 0..grid[0].len() {
                 match grid[i][j] {
-                    'a'..='z' => {
-                        all_keys_num += 1;
-                    }
-                    '@' => {
-                        start = i as i32;
-                        end = j as i32;
+                    'a'..='k' => {
+                        Self::get_length(&grid, (i, j), &mut cost);
                     }
                     _ => {}
                 }
             }
         }
-        /*错误解法
-        let mut res = std::i32::MAX;
-        let mut used = vec![vec![false; grid[0].len()]; grid.len()];
-        used[start as usize][end as usize] = true;
-        Self::dfs(
-            &grid,
-            (start, end),
-            &mut vec![false; all_keys_num],
-            all_keys_num as i32,
-            0,
-            0,
-            &mut res,
-            &mut used,
-        );
-        if res == std::i32::MAX {
-            -1
-        } else {
-            res
-        }*/
-        let dirs = vec![(0, 1), (0, -1), (1, 0), (1, -1)];
-        let mut step = 0;
-        let mut keys = vec![false; all_keys_num];
-        let mut queue = vec![];
-        let now_keys = 0;
-        let mut keys_set = HashSet::new();
-        queue.push((start as i32, end as i32, step, keys_set));
-        while queue.len() > 0 {
-            let (x, y, step, keys_set) = queue.remove(0);
-        }
-        return -1;
+        0
     }
 
-    // 当前遍历到的点
-    fn dfs(
-        grid: &Vec<Vec<char>>,
-        (x, y): (i32, i32),
-        keys: &mut Vec<bool>,
-        all_keys_num: i32,
-        now_keys: i32,
-        step: i32,
-        min: &mut i32,
-        used: &mut Vec<Vec<bool>>,
-    ) {
-        /*println!(
-            " x:{},y:{},keys:{:?},all_keys_num:{},now_keys:{}, step:{},min:{},used:{:?}",
-            x, y, keys, all_keys_num, now_keys, step, min, used
-        );*/
-        if now_keys == all_keys_num {
-            *min = std::cmp::min(*min, step);
-            return;
-        }
-        let x_len = grid.len();
-        let y_len = grid[0].len();
-        let dirs = vec![(0, -1), (0, 1), (1, 0), (-1, 0)];
-        for dir in dirs {
-            let next_x = dir.0 + x;
-            let next_y = dir.1 + y;
-            if next_x < 0
-                || next_y < 0
-                || next_x >= x_len as i32
-                || next_y >= y_len as i32
-                || used[next_x as usize][next_y as usize]
-            {
-                continue;
-            }
-            let next_c = grid[next_x as usize][next_y as usize];
-            used[next_x as usize][next_y as usize] = true;
-            match next_c {
-                '.' => {
-                    Self::dfs(
-                        grid,
-                        (next_x, next_y),
-                        keys,
-                        all_keys_num,
-                        now_keys,
-                        step + 1,
-                        min,
-                        used,
-                    );
-                }
-                'a'..='z' => {
-                    keys[next_c as usize - 'a' as usize] = true;
-                    Self::dfs(
-                        grid,
-                        (next_x, next_y),
-                        keys,
-                        all_keys_num,
-                        now_keys + 1,
-                        step + 1,
-                        min,
-                        used,
-                    );
-                    keys[next_c as usize - 'a' as usize] = false;
-                }
-                'A'..='Z' => {
-                    if keys[next_c as usize - 'A' as usize] {
-                        Self::dfs(
-                            grid,
-                            (next_x, next_y),
-                            keys,
-                            all_keys_num,
-                            now_keys,
-                            step + 1,
-                            min,
-                            used,
-                        );
-                    }
-                }
-                _ => {}
-            }
-            used[next_x as usize][next_y as usize] = false;
-        }
-    }
+    // 获取i,j点到各个关键点的距离
+    // 0为起点，1~6分别对应a~f,若没有某个字母，则该字母对应的所有的距离都是0
+    fn get_length(grid: &Vec<Vec<char>>, (i, j): (usize, usize), cost: &mut Vec<Vec<i32>>) {}
 }
 // @lc code=end
 

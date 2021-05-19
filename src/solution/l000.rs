@@ -1,7 +1,6 @@
-pub struct Solution {}
+use super::Solution;
 
 impl Solution {
-    #[allow(dead_code)]
     pub fn solve() {}
 }
 #[cfg(test)]
