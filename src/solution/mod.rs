@@ -72,6 +72,43 @@ impl TreeNode {
 
 pub struct Solution {}
 
+// vec![String::from(),String::from()...]
+macro_rules! sv{
+    ( $( $x:expr ),* ) => {
+        {
+            let mut v = Vec::new();
+            $(
+                v.push(String::from($x));
+            )*
+            v
+        }
+    }
+}
+
+// String
+macro_rules! s {
+    ($x:expr) => {
+        String::from($x)
+    };
+}
+
+// vec![vec![],vec![]...]
+macro_rules! matrix{
+    ( $( $x:expr ),* ) => {
+        {
+            let mut v = Vec::new();
+            $(
+                let mut item = Vec::new();
+                for &i in $x.iter(){
+                    item.push(i);
+                }
+                v.push(item);
+            )*
+            v
+        }
+    }
+}
+
 mod l000;
 mod l002;
 mod l003;
@@ -105,6 +142,7 @@ mod l033;
 mod l034;
 mod l035;
 mod l036;
+mod l037;
 mod l038;
 mod l039;
 mod l040;
@@ -169,8 +207,13 @@ mod l1020;
 mod l1027;
 mod l1031;
 mod l105;
+mod l1052;
 mod l106;
+mod l1072;
+mod l1079;
+mod l1080;
 mod l109;
+mod l1131;
 mod l118;
 mod l119;
 mod l120;
@@ -179,18 +222,27 @@ mod l122;
 mod l123;
 mod l126;
 mod l128;
+mod l1296;
+mod l1297;
 mod l1405;
 mod l143;
 mod l1465;
 mod l1477;
 mod l148;
+mod l1487;
+mod l1494;
 mod l152;
 mod l153;
 mod l154;
+mod l1594;
 mod l162;
+mod l1662;
 mod l167;
 mod l1679;
 mod l169;
+mod l171;
+mod l1802;
+mod l1877;
 mod l189;
 mod l203;
 mod l206;
@@ -203,24 +255,31 @@ mod l229;
 mod l234;
 mod l236;
 mod l238;
+mod l260;
 mod l268;
 mod l283;
 mod l287;
 mod l289;
 mod l337;
+mod l344;
 mod l380;
+mod l388;
 mod l414;
+mod l421;
 mod l424;
 mod l438;
 mod l442;
 mod l445;
 mod l448;
 mod l457;
+mod l464;
 mod l468;
 mod l485;
 mod l495;
+mod l507;
 mod l523;
 mod l532;
+mod l542;
 mod l560;
 mod l561;
 mod l565;
@@ -232,6 +291,7 @@ mod l621;
 mod l628;
 mod l636;
 mod l643;
+mod l657;
 mod l661;
 mod l665;
 mod l667;
@@ -251,6 +311,7 @@ mod l729;
 mod l747;
 mod l748;
 mod l766;
+mod l773;
 mod l777;
 mod l779;
 mod l780;
@@ -258,6 +319,7 @@ mod l790;
 mod l798;
 mod l808;
 mod l811;
+mod l828;
 mod l849;
 mod l852;
 mod l857;
@@ -265,10 +327,13 @@ mod l861;
 mod l864;
 mod l870;
 mod l879;
+mod l883;
 mod l898;
+mod l903;
 mod l905;
 mod l924;
 mod l927;
+mod l931;
 mod l932;
 mod l936;
 mod l941;
@@ -276,10 +341,15 @@ mod l943;
 mod l950;
 mod l951;
 mod l954;
+mod l957;
 mod l958;
 mod l962;
+mod l974;
 mod l978;
 mod l982;
+mod l989;
 mod l991;
+mod m0405;
+mod m0802;
 mod m1005;
 mod util;

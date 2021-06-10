@@ -55,8 +55,8 @@ impl Solution {
     pub fn is_palindrome(head: Option<Box<ListNode>>) -> bool {
         // 利用O(n)及O(1)空间复杂度解决
         // O(1)空间复杂度，表示无法使用栈递归
-        // O(n)则表示只能遍历
-        // 方法是旋转链表，并逐个比较
+        // O(n)则表示只能遍历, 那么只能通过旋转后半部分的链表，与前部分再做比较了。
+        // O(n)空间复杂度则是旋转链表，并逐个比较
         Self::reverse_list(head.clone()) == head
     }
 
