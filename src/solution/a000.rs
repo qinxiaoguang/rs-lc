@@ -7,5 +7,5 @@ impl Solution {
 mod test {
     use super::*;
     #[test]
-    fn test_l000() {}
+    fn test_000() {}
 }

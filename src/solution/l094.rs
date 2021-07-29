@@ -27,8 +27,17 @@ impl Solution {
     // 题目想让你通过迭代的方式去实现
     // 迭代其实就是通过栈, 有点麻烦，有点难啊= =
     pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
-        println!("{:?}", root);
-        vec![]
+        let mut res = Vec::new();
+        Solution::inorder_traverse(root.as_ref(), &mut (|v| res.push(v)));
+        res
+    }
+
+    fn inorder_traverse<F: FnMut(i32)>(root: Option<&Rc<RefCell<TreeNode>>>, consumer: &mut F) {
+        if let Some(node) = root {
+            Solution::inorder_traverse(node.borrow().left.as_ref(), consumer);
+            consumer(root.as_ref().unwrap().borrow().val);
+            Solution::inorder_traverse(node.borrow().right.as_ref(), consumer);
+        }
     }
 }
 
