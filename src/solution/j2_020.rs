@@ -44,6 +44,7 @@ impl Solution {
             p[i] = if max_right <= i {
                 1
             } else {
+                // 为什么是两者最小值，因为如果max_right-i比p[2*center-i]小的话，说明至少对于max_right-i来说一定是回文串内的。
                 p[2 * center - i].min(max_right - i)
             };
 
